@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    // Creamos el binding y lo sincronizamos
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
