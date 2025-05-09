@@ -52,7 +52,7 @@ class CategoryDAO(private val context: Context) {
 
             val count = db.update(Category.TABLE_NAME, values, selection, null)
 
-            Log.i("DATABASE", "Update category with id: ${category.id}")
+            Log.i("DATABASE", "Updated category with id: ${category.id}")
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -68,10 +68,10 @@ class CategoryDAO(private val context: Context) {
             // Define 'where' part of query.
             val selection = "${Category.COLUMN_NAME_ID} = ${category.id}"
 
-            // Issue SQL statement
+            // Issue SQL statement.
             val deletedRows = db.delete(Category.TABLE_NAME, selection, null)
 
-            Log.i("DATABASE", "Delete category with id: ${category.id}")
+            Log.i("DATABASE", "Deleted category with id: ${category.id}")
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -79,7 +79,7 @@ class CategoryDAO(private val context: Context) {
         }
     }
 
-    // Obtener registro por ID
+    // Obtener un registro por ID
     fun findById(id: Long): Category? {
         open()
 
@@ -96,13 +96,13 @@ class CategoryDAO(private val context: Context) {
             val selection = "${Category.COLUMN_NAME_ID} = $id"
 
             val cursor = db.query(
-                Category.TABLE_NAME,    // The table to query
+                Category.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
-                null,       // The values for the WHERE clause
-                null,           // don't group the rows
-                null,            // don't filter by row groups
-                null            // The sort order
+                null,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                null               // The sort order
             )
 
             if (cursor.moveToNext()) {
