@@ -1,6 +1,7 @@
 package com.example.listadetareas.activities
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -43,9 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         categoryList = categoryDAO.findAll()
 
-        adapter = CategoryAdapter(categoryList, {
+        adapter = CategoryAdapter(categoryList, { position ->
             // He pulsado una categoría
+            val category = categoryList[position]
 
+            val intent = Intent(this, TaskListActivity::class.java)
+            intent.putExtra("CATEGORY_ID", category.id)
+            startActivity(intent)
         }, { position ->
             //edit
             val category = categoryList[position]
@@ -102,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             .setTitle("Borrar categoria")
             .setMessage("¿Esta usted seguro de querer borrar esta categoria Borrar la categoria borrara todas sus tareas?")
             .setPositiveButton(android.R.string.ok, { dialog, which ->
-                    categoryDAO.update(category)
+                    categoryDAO.delete(category)
                     loadData()
             })
             .setNegativeButton(android.R.string.cancel, null)
