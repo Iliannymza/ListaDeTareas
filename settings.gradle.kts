@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ListaDeTareas"
 include(":app")
+include(":app")
+ 
