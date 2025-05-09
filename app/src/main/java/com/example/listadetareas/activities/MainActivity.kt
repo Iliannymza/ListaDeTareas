@@ -120,17 +120,3 @@ class MainActivity : AppCompatActivity() {
         adapter.updateItems(categoryList)
     }
 }
-
-
-
-
-
-
-
-
-
-// TOKEN
-//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
-
-//nuevo token
-//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
